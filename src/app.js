@@ -1,6 +1,6 @@
 var conf = {
-  LIVEBLOG_URL: 'http://live.theverge.com/apple-iphone-iwatch-live-blog/live.json',
-  LIVEBLOG_NAME: 'iPhone 6 Event',
+  LIVEBLOG_URL: 'http://live.theverge.com/apple-watch-macbook-liveblog-march-2015/live.json',
+  LIVEBLOG_NAME: 'Spring Forward Event',
   REFRESH_INTERVAL: 30 /* seconds */
 };
 
