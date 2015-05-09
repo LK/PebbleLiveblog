@@ -1,21 +1,31 @@
+/*
+Liveblog Tracking App for Pebble Watch
+Original code by Lenny Khazan (github.com/LK)
+Updated by Thomas Suarez (github.com/tomthecarrot)
+*/
+
+// Liveblog Configuration
 var conf = {
-  LIVEBLOG_URL: 'http://live.theverge.com/apple-watch-macbook-liveblog-march-2015/live.json',
-  LIVEBLOG_NAME: 'Spring Forward Event',
+  LIVEBLOG_URL: 'http://live.theverge.com/google-io-2014-keynote-liveblog/live.json',
+  LIVEBLOG_NAME: 'Google IO 2014',
   REFRESH_INTERVAL: 30 /* seconds */
 };
 
+// Import required libraries
 var UI = require('ui');
 var ajax = require('ajax');
 
 var HTML5Entities = require('html5-entities.js');
 var Html5Entities = new HTML5Entities();
 
+// Main UI Card
 var mainCard = new UI.Card({
   title: conf.LIVEBLOG_NAME + ' Liveblog',
   subtitle: 'theverge.com',
   body: 'Press select to refresh.'
 });
 
+// Add a new UI Card for latest liveblog update
 var addCard = function(entry) {
   var body = entry.body.replace(/(<([^>]+)>)/ig, '');
   body.trim();
@@ -32,8 +42,10 @@ var addCard = function(entry) {
   card.show();
 };
 
+// ID of the last shown 
 var lastShownId = -1;
 
+// Refresh liveblog updates/data
 var refreshData = function() {
   mainCard.body('Downloading new messages...');
   ajax({url: conf.LIVEBLOG_URL, type: 'json'}, function(data) {
@@ -54,6 +66,7 @@ var refreshData = function() {
   });
 };
 
+// Show Main UI Card
 mainCard.on('click', 'select', refreshData);
 mainCard.show();
 
