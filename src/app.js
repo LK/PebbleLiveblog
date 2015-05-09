@@ -30,16 +30,28 @@ var addCard = function(entry) {
   var body = entry.body.replace(/(<([^>]+)>)/ig, '');
   body.trim();
   if (body.length === 0) return;
+  var decoded = Html5Entities.decode(body);
   var card = new UI.Card({
-    body: Html5Entities.decode(body),
+    body: decoded,
     scrollable: true
   });
   
-  card.on('click', 'select', function() {
-    card.hide();
-  });
-
-  card.show();
+  console.log("new: ");
+  console.log(decoded);
+  console.log(decoded.length);
+  
+  // If the message contains text, show it.
+  if (decoded.length > 1) {
+    card.on('click', 'select', function() {
+      card.hide();
+    });
+  
+    card.show();
+  }
+  // Else, if the Card text is blank (e.g. a picture), skip it and try again.
+  else {
+    refreshData();
+  }
 };
 
 // ID of the last shown 
@@ -55,6 +67,7 @@ var refreshData = function() {
       for (var i = data.entries.length-1; i >= 0; i--) {
         if (data.entries.length - i > 15) break; //prevent too many messages
         var entry = data.entries[i];
+        
         if (!entry.pinned && entry.id > lastShownId) {
           addCard(entry);
         }
