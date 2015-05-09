@@ -6,7 +6,7 @@ Read liveblogs from [The Verge](https://theverge.com) on your Pebble.
 
 1. Sign in to [CloudPebble](http://cloudpebble.com) with your Pebble account.
 2. In the Projects tab, click "Import"
-3. Select "Import from GitHub", fill in whatever project name you'd like, and "github.com/tomthecarrot/PebbleLiveblog" as the GitHub project. You might need to go to settings and link your GitHub account in order to do this.
+3. Select "Import from GitHub", fill in whatever project name you'd like, and "github.com/LK/PebbleLiveblog" as the GitHub project. You might need to go to settings and link your GitHub account in order to do this.
 4. Open the project, select a file in the left, click the green run button, and assuming everything's set up you're good to go.
 
 If you run into any problems feel free to submit an issue on the tracker.
